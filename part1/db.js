@@ -5,4 +5,6 @@ const pool = mysql.createPool({
     user: 'dog_db',
     password: 'dog123',
     database: 'DogWalkService'
-})
+});
+
+module
