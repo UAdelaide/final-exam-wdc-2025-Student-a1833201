@@ -18,8 +18,8 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 app.post('/logout', (req, res) => {
-req.session.destroy(err => {
-    if (!err){
+req.session.destroy(!err => {
+    if (err){
     res.clearCookie('connect.sid'); // Clear the session cookie
     res.json({ message: 'Logout successful' });
     }
