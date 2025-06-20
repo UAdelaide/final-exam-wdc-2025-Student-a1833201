@@ -20,7 +20,7 @@ app.use('/api/users', userRoutes);
 app.post('/logout', function(req, res) {
   req.session.destroy(function() {
     res.clearCookie('connect.sid');
-    res.json({ message: 'Logout successful' });
+    res.json({ message: 'Logged out' });
   });
 });
 
