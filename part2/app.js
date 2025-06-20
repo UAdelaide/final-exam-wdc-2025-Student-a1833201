@@ -9,12 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET || '',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
-}));
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -22,5 +17,15 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
+app.post('/logout', (req, res) => {
+
+req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ error: 'Could not log out' });
+    }
+    res.clearCookie('connect.sid'); // Clear the session cookie
+    res.json({ message: 'Logout successful' });
+  });
+});
 // Export the app instead of listening here
 module.exports = app;
