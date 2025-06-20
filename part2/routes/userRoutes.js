@@ -54,5 +54,26 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Login failed' });
   }
 });
+router.post('/seed', async (req, res) => {
+  const users = [
+    ['alice123', 'alice@example.com', 'hashed123', 'owner'],
+    ['bobwalker', 'bob@example.com', 'hashed456', 'walker'],
+    ['carol123', 'carol@example.com', 'hashed789', 'owner'],
+    ['johnwalker', 'john@example.com', 'hashed121', 'walker'],
+    ['mary123', 'mary@example.com', 'hashed122', 'owner']
+  ];
+  const query = `
+    INSERT INTO Users (username, email, password_hash, role)
+    VALUES (?, ?, ?, ?)
+  `;
+  try {
+    for (const user of users) {
+      await db.query(query, user);
+    }
+    res.status(201).json({ message: 'Users seeded successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Seeding users failed' });
+  }
+});
 
 module.exports = router;
