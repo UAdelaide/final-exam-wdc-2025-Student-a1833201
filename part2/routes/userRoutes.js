@@ -67,6 +67,6 @@ router.post('/seed', async (req, res) => {
     VALUES (?, ?, ?, ?)
   `;
 }
-)
+);
 
 module.exports = router;
