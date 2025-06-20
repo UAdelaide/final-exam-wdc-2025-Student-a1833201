@@ -18,11 +18,7 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 app.post('/logout', function(req, res) {
-  function destroySession(callback) {
     req.session.destroy(function(err) {
-      callback(err); // Call the callback with the error (if any)
-    });
-  }
 
   destroySession(function(err) {
     if (err) {
