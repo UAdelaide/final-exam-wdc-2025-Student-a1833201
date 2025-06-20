@@ -19,8 +19,8 @@ app.use('/api/users', userRoutes);
 
 app.post('/logout', function(req, res) {
   req.session.destroy(function() {
-    res.clearCookie('connect.sid'); // Clear the session cookie
-    res.json({ message: 'Logout successful' }); // Send success response
+    res.clearCookie('connect.sid');
+    res.json({ message: 'Logout successful' });
   });
 });
 
