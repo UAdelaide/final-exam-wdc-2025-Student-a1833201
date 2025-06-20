@@ -54,19 +54,5 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Login failed' });
   }
 });
-router.post('/seed', async (req, res) => {
-  const users = [
-    ['alice123', 'alice@example.com', 'hashed123', 'owner'],
-    ['bobwalker', 'bob@example.com', 'hashed456', 'walker'],
-    ['carol123', 'carol@example.com', 'hashed789', 'owner'],
-    ['johnwalker', 'john@example.com', 'hashed121', 'walker'],
-    ['mary123', 'mary@example.com', 'hashed122', 'owner']
-  ];
-  const query = `
-    INSERT INTO Users (username, email, password_hash, role)
-    VALUES (?, ?, ?, ?)
-  `;
-}
-);
 
 module.exports = router;
