@@ -56,3 +56,11 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+
+
+INSERT INTO Users (username, email, password_hash, role) VALUES
+('alice123', 'alice@example.com', '$2b$10$hashed123', 'owner'),
+('bobwalker', 'bob@example.com', '$2b$10$hashed456', 'walker'),
+('carol123', 'carol@example.com', '$2b$10$hashed789', 'owner'),
+('johnwalker', 'john@example.com', '$2b$10$hashed121', 'walker'),
+('mary123', 'mary@example.com', '$2b$10$hashed122', 'owner');
