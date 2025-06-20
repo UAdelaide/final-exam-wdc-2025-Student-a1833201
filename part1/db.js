@@ -7,4 +7,4 @@ const pool = mysql.createPool({
     database: 'DogWalkService'
 });
 
-module
+module.exports = pool.promise();
