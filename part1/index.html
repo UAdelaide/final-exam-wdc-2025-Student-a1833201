@@ -32,7 +32,8 @@
                 methods:{
                     async fetchDog(){
                         try {
-                            const response = await fetch(' https://dog.ceo/dog-api/documentation/random')
+                            const response = await fetch(' https://dog.ceo/dog-api/documentation/random');
+                            const data = await response.json();
                         }
                     }
                 }
