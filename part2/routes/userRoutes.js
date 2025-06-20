@@ -66,12 +66,7 @@ router.post('/seed', async (req, res) => {
     INSERT INTO Users (username, email, password_hash, role)
     VALUES (?, ?, ?, ?)
   `;
-  try {
-    for (const user of users) {
-      await db.query(query, user);
-    }
-
-  }
-
+}
+)
 
 module.exports = router;
