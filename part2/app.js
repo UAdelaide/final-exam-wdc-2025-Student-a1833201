@@ -27,13 +27,3 @@ app.post('/logout', function(req, res) {
 // Export the app instead of listening here
 module.exports = app;
 
-INSERT INTO Users (username, email, password_hash, role) VALUES
-
-
-('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
-
-('carol123', 'carol@exmaple.com', 'hashed789', 'owner'),
-
-('johnwalker', 'john@example.com', 'hashed121', 'walker'),
-
-('mary123', 'mary@example.com', 'hashed122', 'owner');
