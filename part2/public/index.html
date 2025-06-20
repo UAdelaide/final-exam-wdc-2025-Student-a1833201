@@ -16,7 +16,13 @@
     <form @submit.prevent="login" class="'mb-4">
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" v-model="username" class="form-control"
+        <input type="text" id="username" v-model="username" class="form-control" required>
+      </div>
+    </form>
+
+        <div class="mb-3">
+        <label for="password" class="form-label">Username</label>
+        <input type="text" id="username" v-model="username" class="form-control" required>
       </div>
     </form>
 
