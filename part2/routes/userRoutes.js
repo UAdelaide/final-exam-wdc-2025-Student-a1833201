@@ -18,8 +18,15 @@ router.post('/register', async (req, res) => {
 
   try {
     const [result] = await db.query(`
-      INSERT INTO Users (username, email, password_hash, role)
-      VALUES (?, ?, ?, ?)
+  const result = await db.query(`
+    INSERT INTO Users (username, email, password_hash, role) VALUES
+  ('alice123', 'alice@example.com', 'hashed123', 'owner'),
+  ('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
+  ('carol123', 'carol@example.com', 'hashed789', 'owner'),
+  ('johnwalker', 'john@example.com', 'hashed121', 'walker'),
+  ('mary123', 'mary@example.com', 'hashed122', 'owner')
+);
+
     `, [username, email, password, role]);
 
     res.status(201).json({ message: 'User registered', user_id: result.insertId });
