@@ -34,10 +34,11 @@
 
           if (this.username === ownerCredentials.username && this.password === ownerCredentials.password){
             sessionStorage.setItem('role','owner');
-            window.location.href=
+            window.location.href='owner-dashboard.html';
           }
           else if (this.username === walkerCredentials.username && this.password === walkerCredentials.password){
             sessionStorage.setItem('role','walker');
+            window.location.href='owner-dashboard.html';
           }
         }
       }
