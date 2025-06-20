@@ -32,7 +32,9 @@
           const ownerCredentials = {username: 'owner', password: 'ownerpass'};
           const walkerCredentials = {username: 'walker', password: 'walkerpass'};
 
-          if (this.username === ownerCredentials.username && this.password === ownerCredentials)
+          if (this.username === ownerCredentials.username && this.password === ownerCredentials.password){
+            sessionStorage
+          }
         }
       }
     }).mount('#app');
