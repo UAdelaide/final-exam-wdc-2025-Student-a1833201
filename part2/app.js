@@ -18,18 +18,10 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 app.post('/logout', function(req, res) {
-    req.session.destroy(function(err) {
-
-  destroySession(function(err) {
-    if (err) {
-      console.error('Error destroying session:', err); // Log the error for debugging
-      return res.status(500).json({ error: 'Could not log out' });
-    }
-
+  req.session.destroy(function() {
     res.clearCookie('connect.sid'); // Clear the session cookie
-    res.json({ message: 'Logout successful' });
-  });}
-)
+    res.json({ message: 'Logout successful' }); // Send success response
+  });
 });
 
 // Export the app instead of listening here
