@@ -10,7 +10,7 @@
         <div id="app">
             <h1>Dog of the day</h1>
             <button type="button" @click="fetchDog">Fetch a dog</button>
-            <div v-if="dogImage" alt="DogOfTheDay">
+            <div v-if="dogImage" class="dog-details">
                 <img :src="dogImage"
             </div>
 
