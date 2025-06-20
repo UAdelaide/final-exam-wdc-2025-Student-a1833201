@@ -28,7 +28,7 @@ app.post('/logout', function(req, res) {
 
     res.clearCookie('connect.sid'); // Clear the session cookie
     res.json({ message: 'Logout successful' });
-  });
+  });}
 });
 
 // Export the app instead of listening here
