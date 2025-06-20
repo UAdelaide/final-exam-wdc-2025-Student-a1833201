@@ -5,6 +5,7 @@ var logger = require('morgan');
 var mysql = require('mysql2/promise');
 
 var app = express();
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -12,115 +13,57 @@ app.use(cookieParser());
 
 let db;
 
-(async function initializeDatabase() {
+(async () => {
   try {
-    // Connect to MySQL database
-    db = await mysql.createConnection({
+    // Connect to MySQL without specifying a database
+    const connection = await mysql.createConnection({
       host: 'localhost',
       user: 'dog_db',
-      password: 'dog123',
-      database: 'DogWalkService'
+      password: 'dog123' // Set your MySQL root password
     });
 
-    // Create tables
-    await Promise.all([
-      db.execute(`CREATE TABLE IF NOT EXISTS Users (
-        user_id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(50) NOT NULL UNIQUE,
-        email VARCHAR(100) NOT NULL,
-        password_hash VARCHAR(255) NOT NULL,
-        role ENUM('owner', 'walker') NOT NULL
-      )`),
-      db.execute(`CREATE TABLE IF NOT EXISTS Dogs (
-        dog_id INT AUTO_INCREMENT PRIMARY KEY,
-        owner_id INT,
-        name VARCHAR(50) NOT NULL,
-        size ENUM('small', 'medium', 'large') NOT NULL,
-        FOREIGN KEY (owner_id) REFERENCES Users(user_id)
-      )`),
-      db.execute(`CREATE TABLE IF NOT EXISTS WalkRequests (
-        request_id INT AUTO_INCREMENT PRIMARY KEY,
-        dog_id INT,
-        requested_time DATETIME NOT NULL,
-        duration_minutes INT NOT NULL,
-        location VARCHAR(255) NOT NULL,
-        status ENUM('open', 'accepted', 'completed', 'cancelled') NOT NULL,
-        FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)
-      )`)
-    ]);
+    // Now connect to the created database
+    db = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'testdb'
+    });
 
-    // Insert sample data if tables are empty
-    const [users, dogs, requests] = await Promise.all([
-      db.execute('SELECT COUNT(*) AS count FROM Users'),
-      db.execute('SELECT COUNT(*) AS count FROM Dogs'),
-      db.execute('SELECT COUNT(*) AS count FROM WalkRequests')
-    ]);
+    // Create a table if it doesn't exist
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS books (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(255),
+        author VARCHAR(255)
+      )
+    `);
 
-    if (users[0][0].count === 0) {
-      await db.execute(`INSERT INTO Users (username, email, password_hash, role) VALUES
-        ('alice123', 'alice@example.com', 'hashed123', 'owner'),
-        ('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
-        ('carol123', 'carol@example.com', 'hashed789', 'owner'),
-        ('johnwalker', 'john@example.com', 'hashed121', 'walker'),
-        ('mary123', 'mary@example.com', 'hashed122', 'owner')`);
+    // Insert data if table is empty
+    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
+    if (rows[0].count === 0) {
+      await db.execute(`
+        INSERT INTO books (title, author) VALUES
+        ('1984', 'George Orwell'),
+        ('To Kill a Mockingbird', 'Harper Lee'),
+        ('Brave New World', 'Aldous Huxley')
+      `);
     }
-
-    if (dogs[0][0].count === 0) {
-      await db.execute(`INSERT INTO Dogs (owner_id, name, size) VALUES
-        ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Max', 'medium'),
-        ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Bella', 'small'),
-        ((SELECT user_id FROM Users WHERE username = 'bobwalker'), 'Gemma', 'large'),
-        ((SELECT user_id FROM Users WHERE username = 'johnwalker'), 'Gwen', 'small'),
-        ((SELECT user_id FROM Users WHERE username = 'mary123'), 'Dusty', 'medium')`);
-    }
-
-    if (requests[0][0].count === 0) {
-      await db.execute(`INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
-        ((SELECT dog_id FROM Dogs WHERE name = 'Max'), '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
-        ((SELECT dog_id FROM Dogs WHERE name = 'Bella'), '2025-06-10 09:30:00', 45, 'Beachside Ave', 'accepted'),
-        ((SELECT dog_id FROM Dogs WHERE name = 'Gemma'), '2025-06-12 10:00:00', 20, 'Glenelg', 'open'),
-        ((SELECT dog_id FROM Dogs WHERE name = 'Gwen'), '2025-07-10 18:00:00', 30, 'Burnside', 'open'),
-        ((SELECT dog_id FROM Dogs WHERE name = 'Dusty'), '2025-08-17 15:30:00', 30, 'Henley Beach', 'accepted')`);
-    }
-
-    console.log('Database initialized successfully');
   } catch (err) {
-    console.error('Error setting up database:', err);
+    console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
   }
 })();
 
-// API Routes
-app.get('/api/dogs', async (req, res) => {
+// Route to return books as JSON
+app.get('/', async (req, res) => {
   try {
-    const [rows] = await db.execute('SELECT * FROM Dogs');
-    res.json(rows);
+    const [books] = await db.execute('SELECT * FROM books');
+    res.json(books);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch dogs' });
-  }
-});
-
-app.get('/api/walkrequests/open', async (req, res) => {
-  try {
-    const [rows] = await db.execute('SELECT * FROM WalkRequests WHERE status = "open"');
-    res.json(rows);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch open requests' });
-  }
-});
-
-app.get('/api/walkers/summary', async (req, res) => {
-  try {
-    const [rows] = await db.execute(`
-      SELECT U.username, COUNT(W.request_id) AS total_walks
-      FROM Users U LEFT JOIN WalkRequests W ON U.user_id = W.walker_id
-      WHERE U.role = 'walker'
-      GROUP BY U.username
-    `);
-    res.json(rows);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch walker summary' });
+    res.status(500).json({ error: 'Failed to fetch books' });
   }
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 module.exports = app;
