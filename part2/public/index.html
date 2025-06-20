@@ -35,7 +35,7 @@
           if (this.username === ownerCredentials.username && this.password === ownerCredentials.password){
             sessionStorage.setItem('role','owner');
           }
-                    if (this.username === ownerCredentials.username && this.password === ownerCredentials.password){
+          else if (this.username === walkerCredentials.username && this.password === walkerCredentials.password){
             sessionStorage.setItem('role','owner');
           }
         }
