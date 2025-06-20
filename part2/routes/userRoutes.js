@@ -58,6 +58,3 @@ router.post('/login', async (req, res) => {
 module.exports = router;
 
 
-INSERT INTO Users (username, email, password_hash, role) VALUES
-('alice123', 'alice@example.com', 'hashedpassword123', 'owner'),
-('bobwalker', 'bob@example.com', 'hashed456', 'walker'),
