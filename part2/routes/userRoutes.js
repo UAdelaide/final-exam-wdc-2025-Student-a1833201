@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
   ('carol123', 'carol@example.com', 'hashed789', 'owner'),
   ('johnwalker', 'john@example.com', 'hashed121', 'walker'),
   ('mary123', 'mary@example.com', 'hashed122', 'owner')
-);
+`);
 
     `, [username, email, password, role]);
 
