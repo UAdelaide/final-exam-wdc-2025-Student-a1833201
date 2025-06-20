@@ -15,17 +15,11 @@ let db;
 
 (async function initialiseDatabase() {
   try {
-    // Connect to MySQL without specifying a database
-    const connection = await mysql.createConnection({
-      host: 'localhost',
-      user: 'dog_db',
-      password: 'dog123' // Set your MySQL root password
-    });
 
     // Now connect to the created database
     db = await mysql.createConnection({
       host: 'localhost',
-      user: 'root',
+      user: 'dog_db',
       password: '',
       database: 'testdb'
     });
