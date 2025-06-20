@@ -20,8 +20,8 @@ let db;
     db = await mysql.createConnection({
       host: 'localhost',
       user: 'dog_db',
-      password: '',
-      database: 'testdb'
+      password: 'dog123',
+      database: 'DogWalkService'
     });
 
     // Create a table if it doesn't exist
