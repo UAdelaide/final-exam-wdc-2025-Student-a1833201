@@ -70,10 +70,8 @@ router.post('/seed', async (req, res) => {
     for (const user of users) {
       await db.query(query, user);
     }
-    res.status(201).json({ message: 'Users seeded successfully' });
-  } catch (error) {
-    res.status(500).json({ error: 'Seeding users failed' });
+
   }
-});
+);
 
 module.exports = router;
