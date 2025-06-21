@@ -68,7 +68,7 @@ async function insertInitialData() {
   }
 }
 
-app.get('/api/dogs', async (req,res) =>{
+app.get('/api/dogs', async (req,res) => {
   try{
     const [dogs] = await db.execute(`
       SELECT d.name AS dog_name, d.size, u.username AS owner_username
@@ -82,7 +82,7 @@ app.get('/api/dogs', async (req,res) =>{
   }
 });
 
-app.get('/api/dogs', async (req,res) =>{
+app.get('/api/walkrequest/open', async (req,res) => {
   try{
     const [dogs] = await db.execute(`
       SELECT d.name AS dog_name, d.size, u.username AS owner_username
@@ -96,7 +96,7 @@ app.get('/api/dogs', async (req,res) =>{
   }
 });
 
-app.get('/api/dogs', async (req,res) =>{
+app.get('/api/dogs', async (req,res) => {
   try{
     const [dogs] = await db.execute(`
       SELECT d.name AS dog_name, d.size, u.username AS owner_username
