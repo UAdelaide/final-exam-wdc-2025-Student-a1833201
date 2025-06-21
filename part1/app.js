@@ -70,7 +70,7 @@ async function insertInitialData() {
 
 app.get('/api/walkers/summary', async (requestAnimationFrame,res) =>{
   try{
-    const [walkers]
+    const [walkers] = await db.execute()
   }
 }
 )
