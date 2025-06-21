@@ -21,6 +21,7 @@ let db;
       password:'dog123'
     });
     await connection.query('DROP DATABSE IF EXISTS DogWalkService');
+    await connection.query('CREATE DATA')
   }
 }
 
