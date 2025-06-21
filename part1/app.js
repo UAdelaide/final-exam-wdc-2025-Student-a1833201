@@ -14,40 +14,7 @@ app.use(cookieParser());
 let db;
 
 (async function initialiseDatabase() {
-  try {
-    // Now connect to the created database
-    db = await mysql.createConnection({
-      host: 'localhost',
-      user: 'dog_db',
-      password: 'dog123',
-      database: 'DogWalkService'
-    });
 
-    // Create a table if it doesn't exist
-    await db.execute(`
-        CREATE TABLE IF NOT EXISTS Users (
-      user_id INT AUTO_INCREMENT PRIMARY KEY,
-      username VARCHAR(50) NOT NULL UNIQUE,
-      email VARCHAR(100) NOT NULL,
-      password_hash VARCHAR(255) NOT NULL,
-      role ENUM('owner', 'walker') NOT NULL
-     )
-    `);
-
-    // Insert data if table is empty
-    const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
-    if (rows[0].count === 0) {
-      await db.execute(`
-        INSERT INTO books (title, author) VALUES
-        ('1984', 'George Orwell'),
-        ('To Kill a Mockingbird', 'Harper Lee'),
-        ('Brave New World', 'Aldous Huxley')
-      `);
-    }
-  } catch (err) {
-    console.error('Error setting up database. Ensure Mysql is running: service mysql start', err);
-  }
-})();
 
 // Route to return books as JSON
 app.get('/', async (req, res) => {
