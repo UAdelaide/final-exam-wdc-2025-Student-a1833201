@@ -54,8 +54,8 @@ async function insertInitialData() {
   if (dogs[0][0].count === 0) {
     await db.execute(`
       INSERT INTO Dogs (owner_id, name, size) VALUES
-      (1, 'Max', 'medium'),
-      (3, 'Bella', 'small')
+      (1, 'Gwen', 'Large'),
+      (2, 'Bella', 'small')
     `);
   }
 
