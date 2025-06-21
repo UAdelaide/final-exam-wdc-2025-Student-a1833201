@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql2/promise');
+const { fstat } = require('fs');
 
 var app = express();
 
@@ -29,7 +30,8 @@ let db;
       user:'dog_db',
       password:'dog123',
       database:'DogWalkService'
-    })
+    });
+    const sql = await fs.
   }
 }
 
