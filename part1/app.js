@@ -13,7 +13,7 @@ app.use(cookieParser());
 
 let db;
 
-(async function initialiseDatabase() {
+(async () =>
 
 
 // Route to return books as JSON
