@@ -40,5 +40,5 @@ async function initaliseDatabase() {
   }
 }
 async funtion insertInitialData(){
-  const users
+  const users = await db.execute('SELECT COUNT(')
   }
