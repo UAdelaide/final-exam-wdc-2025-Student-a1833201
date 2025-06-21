@@ -68,4 +68,4 @@ async function insertInitialData() {
   }
 }
 
-app.get('/api/walkers/summary')
+app.get('/api/walkers/summary', async (requestAnimationFrame,res))
