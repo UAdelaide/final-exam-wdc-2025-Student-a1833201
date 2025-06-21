@@ -71,7 +71,7 @@ async function insertInitialData() {
 app.get('/api/dogs', async (req,res) =>{
   try{
     const [dogs] = await db.execute(`
-      SELECT d.name AS walker_username, COUNT(wa.request_id) AS total_ratings
+      SELECT d.name AS dog_name,
     `)
   }
 }
