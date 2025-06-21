@@ -63,7 +63,7 @@ async function insertInitialData() {
   if (requests[0][0].count === 0) {
     await db.execute(`
       INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
-      (1, '2025-06-10T08:00:00.000Z', 30, 'Parklands', 'open')
+      (1, '', 30, 'Parklands', 'open')
     `);
   }
 }
