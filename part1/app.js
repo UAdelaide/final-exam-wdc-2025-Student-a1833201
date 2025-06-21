@@ -31,7 +31,7 @@ async function initaliseDatabase() {
       password:'dog123',
       database:'DogWalkService'
     });
-    const sql = await fs.readFile(path.join(part1,'dogwalks.sql'), 'utf8');
+    const sql = await fs.readFile(path.join(_dirname,'dogwalks.sql'), 'utf8');
     await db.query(sql);
 
     await insertInitialData();
