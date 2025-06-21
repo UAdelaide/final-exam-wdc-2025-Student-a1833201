@@ -68,16 +68,16 @@ async function insertInitialData() {
   }
 }
 
-app.get('/api/dogs', async (requesreqtAnimationFrame,res) =>{
+app.get('/api/dogs', async (req,res) =>{
   try{
-    const [walkers] = await db.execute(`
-      SELECT w.username AS walker_username, COUNT(wa.request_id) AS total_ratings
+    const [dogs] = await db.execute(`
+      SELECT d.name AS walker_username, COUNT(wa.request_id) AS total_ratings
     `)
   }
 }
 )
 
-app.get('/api/walkers/summary', async (requestAnimationFrame,res) =>{
+app.get('/api/walkers/summary', async (req,res) =>{
   try{
     const [walkers] = await db.execute(`
       SELECT w.username AS walker_username, COUNT(wa.request_id) AS total_ratings
