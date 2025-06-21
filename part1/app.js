@@ -13,7 +13,11 @@ app.use(cookieParser());
 
 let db;
 
-(async () =>
+(async () =>{
+  try{
+    const connection = await mysql.createConnection({})
+  }
+}
 
 
 // Route to return books as JSON
