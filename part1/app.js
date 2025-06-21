@@ -43,6 +43,6 @@ async funtion insertInitialData(){
   const users = await db.execute('SELECT COUNT(*) AS count FROM Users');
   if(users[0][0].count===0){
     await db.execute(`
-      INSERT INTO Users`)
+      INSERT INTO Users (username)`)
   }
   }
