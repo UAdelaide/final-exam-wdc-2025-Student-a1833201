@@ -112,3 +112,11 @@ app.get('/api/walkers/summary', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch walkers summary' });
   }
 });
+
+app.listen(8080, async () => {
+  console.log('Server is running on http://localhost:8080');
+  await initializeDatabase();
+});
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+module.exports = app;
