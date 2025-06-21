@@ -39,4 +39,6 @@ let db;
     console.error('Error with database',err);
   }
 }
-  async fun
+  async funtion insertInitialData(){
+    
+  }
