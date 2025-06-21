@@ -19,7 +19,7 @@ let db;
       host:'localhost',
       user:'owen',
       password:''
-    })
+    });
   }
 }
 
