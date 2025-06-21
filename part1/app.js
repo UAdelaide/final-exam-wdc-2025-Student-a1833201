@@ -19,7 +19,7 @@ async function initaliseDatabase() {
     const connection = await mysql.createConnection({
       host:'localhost',
       user:'dog_db',
-      password:'dog123'
+      password:''
     });
     await connection.query('DROP DATABASE IF EXISTS DogWalkService');
     await connection.query('CREATE DATABASE DogWalkService');
@@ -28,7 +28,7 @@ async function initaliseDatabase() {
     db = await mysql.createConnection({
       host:'localhost',
       user:'dog_db',
-      password:'dog123',
+      password:'',
       database:'DogWalkService'
     });
     const sql = await fs.readFile(path.join(_dirname,'dogwalks.sql'), 'utf8');
