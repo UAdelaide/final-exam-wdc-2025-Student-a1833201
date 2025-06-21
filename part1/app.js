@@ -76,3 +76,12 @@ app.get('/api/walkers/summary', async (requestAnimationFrame,res) =>{
   }
 }
 )
+
+app.get('/api/walkers/summary', async (requestAnimationFrame,res) =>{
+  try{
+    const [walkers] = await db.execute(`
+      SELECT w.username AS walker_username, COUNT(wa.request_id) AS total_ratings
+    `)
+  }
+}
+)
