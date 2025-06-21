@@ -92,7 +92,7 @@ app.get('/api/walkrequest/open', async (req,res) => {
     res.json(dogs);
   } catch(err){
     console.error('Error fetching dog',err);
-    res.status(500).json({error:'failed to get dog'});
+    res.status(500).json({error: 'failed to get dog'});
   }
 });
 
@@ -106,6 +106,6 @@ app.get('/api/dogs', async (req,res) => {
     res.json(dogs);
   } catch(err){
     console.error('Error fetching dog',err);
-    res.status(500).json({error:'failed to get dog'});
+    res.status(500).json({error: 'failed to get dog'});
   }
 });
