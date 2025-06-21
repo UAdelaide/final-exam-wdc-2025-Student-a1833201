@@ -36,7 +36,7 @@ let db;
 
     await insertInitialData();
   } catch (err){
-    console.error('Error with database')
+    console.error('Error with database',err);
   }
 }
 
