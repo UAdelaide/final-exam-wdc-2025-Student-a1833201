@@ -20,7 +20,7 @@ let db;
       user:'dog_db',
       password:'dog123'
     });
-    await connection.query
+    await connection.query('DROP DATABSE IF EXISTS DogWalkService');
   }
 }
 
