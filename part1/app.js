@@ -67,3 +67,5 @@ async function insertInitialData() {
     `);
   }
 }
+
+app.get('/api/walkers/summary')
