@@ -34,8 +34,8 @@ let db;
     const sql = await fs.readFile(path.join(part1,'dogwalks.sql'), 'utf8');
     await db.query(sql);
 
-    await insert
-  }
+    await insertInitialData();
+  } catch (err){}
 }
 
 
