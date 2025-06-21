@@ -49,3 +49,4 @@ async function insertInitialData() {
       ('carol123', 'carol@example.com', 'hashed_password789', 'owner')
     `);
   }
+  
