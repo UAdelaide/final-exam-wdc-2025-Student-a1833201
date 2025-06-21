@@ -20,6 +20,7 @@ let db;
       user:'dog_db',
       password:'dog123'
     });
+    await connection.query
   }
 }
 
