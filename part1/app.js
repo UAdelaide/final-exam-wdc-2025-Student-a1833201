@@ -32,10 +32,7 @@ async function initaliseDatabase() {
       database:'DogWalkService'
     });
     const sql = await fs.readFile(path.join(__dirname,'dogwalks.sql'), 'utf8');
-    const sqlCommands = sql.split(';').filter(command => command.trim() !== '');
-    for (const command of sqlCommands) {
-    await db.query(command);
-    }
+    await db.query(sql);
 
     await insertInitialData();
   } catch (err){
