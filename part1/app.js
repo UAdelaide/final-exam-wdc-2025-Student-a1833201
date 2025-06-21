@@ -98,16 +98,17 @@ app.get('/api/walkrequest/open', async (req,res) => {
   }
 });
 
-app.get('/api/dogs', async (req,res) => {
-  try{
-    const [dogs] = await db.execute(`
-      SELECT d.name AS dog_name, d.size, u.username AS owner_username
-      FROM Dogs d
-      JOIN Users u ON d.owner_id = u.user_id
+app.get('/api/walkers/summary', async (req, res) => {
+  try {
+    const [walkers] = await db.execute(`
+      SELECT w.username AS walker_username, COUNT(wa.request_id) AS total_ratings, AVG(w.average_rating) AS average_rating, SUM(w.completed_walks) AS completed_walks
+      FROM Walkers w
+      LEFT JOIN WalkApplications wa ON w.walker_id = wa.walker_id
+      GROUP BY w.walker_id
     `);
-    res.json(dogs);
-  } catch(err){
-    console.error('Error fetching dog',err);
-    res.status(500).json({error: 'failed to get dog'});
+    res.json(walkers);
+  } catch (err) {
+    console.error('Error fetching walkers summary:', err);
+    res.status(500).json({ error: 'Failed to fetch walkers summary' });
   }
 });
