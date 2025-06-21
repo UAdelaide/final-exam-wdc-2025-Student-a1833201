@@ -17,7 +17,8 @@ let db;
   try{
     const connection = await mysql.createConnection({
       host:'localhost',
-      user:
+      user:'owen',
+      password:''
     })
   }
 }
