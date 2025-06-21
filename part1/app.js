@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 let db;
 
-(async () =>{
+async () =>{
   try {
     const connection = await mysql.createConnection({
       host:'localhost',
@@ -40,5 +40,5 @@ let db;
   }
 }
   async funtion insertInitialData(){
-    
+
   }
