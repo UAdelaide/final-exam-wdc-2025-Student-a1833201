@@ -41,5 +41,5 @@ async function initaliseDatabase() {
 }
 async funtion insertInitialData(){
   const users = await db.execute('SELECT COUNT(*) AS count FROM Users');
-  
+  if(users[0][0])
   }
