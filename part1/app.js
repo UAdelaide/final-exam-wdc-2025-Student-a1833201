@@ -21,7 +21,7 @@ async function initaliseDatabase() {
       user:'dog_db',
       password:'dog123'
     });
-    await connection.query('DROP DATABSE IF EXISTS DogWalkService');
+    await connection.query('DROP DATABASE IF EXISTS DogWalkService');
     await connection.query('CREATE DATABASE DogWalkService');
     await connection.end();
 
