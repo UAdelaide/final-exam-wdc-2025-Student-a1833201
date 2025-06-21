@@ -39,6 +39,6 @@ async function initaliseDatabase() {
     console.error('Error with database',err);
   }
 }
-  async funtion insertInitialData(){
-
+async funtion insertInitialData(){
+  const users
   }
