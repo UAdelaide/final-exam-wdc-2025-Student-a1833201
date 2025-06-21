@@ -59,4 +59,4 @@ async function insertInitialData() {
     `);
   }
 
-  const request = await db.execute {}
+  const request = await db.execute('SELECT COUNT')
