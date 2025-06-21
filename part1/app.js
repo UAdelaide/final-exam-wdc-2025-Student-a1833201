@@ -22,7 +22,9 @@ let db;
     });
     await connection.query('DROP DATABSE IF EXISTS DogWalkService');
     await connection.query('CREATE DATABASE DogWalkService');
-    await connection
+    await connection.end();
+
+    db = await mysql.createConnection
   }
 }
 
