@@ -71,7 +71,7 @@ async function insertInitialData() {
 app.get('/api/walkers/summary', async (requestAnimationFrame,res) =>{
   try{
     const [walkers] = await db.execute(`
-      SELECT
+      SELECT w.username AS walker_username, COUNT(wa.)
     `)
   }
 }
