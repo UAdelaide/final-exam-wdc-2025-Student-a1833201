@@ -115,7 +115,7 @@ app.get('/api/walkers/summary', async (req, res) => {
 
 app.listen(8080, async () => {
   console.log('Server is running on http://localhost:8080');
-  await initialiseDatabase();
+  await initaliseDatabase();
 });
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
