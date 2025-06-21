@@ -24,7 +24,11 @@ let db;
     await connection.query('CREATE DATABASE DogWalkService');
     await connection.end();
 
-    db = await mysql.createConnection
+    db = await mysql.createConnection({
+        host:'localhost',
+      user:'dog_db',
+      password:'dog123'
+    })
   }
 }
 
