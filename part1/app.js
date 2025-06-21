@@ -32,7 +32,9 @@ let db;
       database:'DogWalkService'
     });
     const sql = await fs.readFile(path.join(part1,'dogwalks.sql'), 'utf8');
-    await
+    await db.query(sql);
+
+    await insert
   }
 }
 
