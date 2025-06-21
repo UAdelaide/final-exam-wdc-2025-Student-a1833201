@@ -31,7 +31,7 @@ let db;
       password:'dog123',
       database:'DogWalkService'
     });
-    const sql = await fs.readFile(path.join())
+    const sql = await fs.readFile(path.join(part1,'dogwalks.sql'))
   }
 }
 
