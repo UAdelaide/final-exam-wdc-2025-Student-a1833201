@@ -25,9 +25,10 @@ let db;
     await connection.end();
 
     db = await mysql.createConnection({
-        host:'localhost',
+      host:'localhost',
       user:'dog_db',
-      password:'dog123'
+      password:'dog123',
+      database:'DogWalkService'
     })
   }
 }
