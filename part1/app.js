@@ -49,4 +49,14 @@ async function insertInitialData() {
       ('carol123', 'carol@example.com', 'hashed_password789', 'owner')
     `);
   }
-  
+
+    const dogs = await db.execute('SELECT COUNT(*) AS count FROM Dogs');
+  if (dogs[0][0].count === 0) {
+    await db.execute(`
+      INSERT INTO Dogs (owner_id, name, size) VALUES
+      (1, 'Max', 'medium'),
+      (3, 'Bella', 'small')
+    `);
+  }
+
+  const request = await db.execute {}
