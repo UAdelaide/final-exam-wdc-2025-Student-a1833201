@@ -39,10 +39,13 @@ async function initaliseDatabase() {
     console.error('Error with database',err);
   }
 }
-async function insertInitialData(){
+async function insertInitialData() {
   const users = await db.execute('SELECT COUNT(*) AS count FROM Users');
-  if(users[0][0].count===0){
+  if (users[0][0].count === 0) {
     await db.execute(`
-      INSERT INTO Users (username)`)
-  }
+      INSERT INTO Users (username, email, password_hash, role) VALUES
+      ('alice123', 'alice@example.com', 'hashed_password_1', 'owner'),
+      ('bobwalker', 'bob@example.com', 'hashed_password_2', 'walker'),
+      ('carol123', 'carol@example.com', 'hashed_password_3', 'owner')
+    `);
   }
