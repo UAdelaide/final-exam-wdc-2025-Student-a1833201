@@ -39,7 +39,7 @@ async function initaliseDatabase() {
     console.error('Error with database',err);
   }
 }
-async funtion insertInitialData(){
+async function insertInitialData(){
   const users = await db.execute('SELECT COUNT(*) AS count FROM Users');
   if(users[0][0].count===0){
     await db.execute(`
