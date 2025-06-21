@@ -59,4 +59,11 @@ async function insertInitialData() {
     `);
   }
 
-  const request = await db.execute('SELECT COUNT')
+  const requests = await db.execute('SELECT COUNT(*) AS count FROM WalkRequests');
+  if (requests[0][0].count === 0) {
+    await db.execute(`
+      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status) VALUES
+      (1, '2025-06-10T08:00:00.000Z', 30, 'Parklands', 'open')
+    `);
+  }
+}
